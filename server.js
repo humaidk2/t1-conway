@@ -10,6 +10,16 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
+const gameMap = [[1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0],
+                [1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1],
+                [0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+                [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0],
+                [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0],
+                [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1],
+                [1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+                [1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1]];
+
 io.on('connection', function(socket) {
   console.log('a user connected');
 
@@ -48,7 +58,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': true}));
 app.use(express.static(path.join(__dirname, '/client')));
 // app.use(flash());
-
+setTimeout(function() {
+  io.emit('gameMap', gameMap);
+}, 15000);
 
 http.listen(port, function() {
   console.log('Server is now connected on port ' + port);
