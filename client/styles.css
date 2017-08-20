@@ -33,8 +33,8 @@ a {
   align-items: center;
 }
 .game{
-  width: 40%;
-  height: 60%;
+  width: 80%;
+  height: 90%;
   display: flex;
   flex-direction: column;
 }
@@ -45,7 +45,7 @@ a {
 }
 
 .game-item {
-  border: 0.25px solid white;
+  border: 0.25px solid black;
   flex: 1 1 0;
 }
 
@@ -77,4 +77,27 @@ a {
   background-color: palevioletred;
   width: 20%;
   height: 27%;
+}
+.shape{
+  width: 40%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.shape-row {
+  flex: 1 1 0;
+  display: flex;
+}
+
+.shape-item {
+  border: 0.25px solid white;
+  flex: 1 1 0;
+}
+
+.shape-live-cell {
+  background-color: black;
+}
+
+.shape-dead-cell {
+  background-color: palevioletred;
 }
