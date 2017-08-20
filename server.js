@@ -10,26 +10,26 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
-const gameMap = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+let gameMap = [[[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [1, 'rgb(256, 0, 0)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [1, 'rgb(0, 125, 125)'], [1, 'rgb(0, 0, 125)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']],
+              [[0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)'], [0, 'rgb(219, 200, 200)']]];
+
 
 io.on('connection', function(socket) {
   console.log('a user connected');
 
   // io.to('some room').emit('some event');
   socket.on('join', function(room) {
-    console.log('a user joined a room:', room);
     socket.join(room);
     // io.to(room).emit('test', 'room message from server sent');
 
@@ -48,6 +48,13 @@ io.on('connection', function(socket) {
     })
 
   });
+  socket.on('click', function(i, j, color) {
+    gameMap[i][j] = [1, color];
+    io.emit('gameMap', gameMap);
+  })
+  socket.on('get', function() {
+    io.emit('gameMap', gameMap);
+  })
 
   socket.on('disconnect', function() {
     console.log('user disconnected');
@@ -72,74 +79,97 @@ setInterval(function() {
   let changes = [];
   for(var i = 0;i < gameMap.length;i++) {
     for(var j = 0;j < gameMap[i].length;j++) {
-      if(gameMap[i][j] === 1) {
+      if(gameMap[i][j][0] === 1) {
         let total = 0;
         if(i - 1 >= 0) {
-          total += gameMap[i - 1][j];
+          total += gameMap[i - 1][j][0];
         } 
         if(j - 1 >= 0) {
-          total += gameMap[i][j - 1];
+          total += gameMap[i][j - 1][0];
         }
         if(i - 1 >= 0 && j - 1 >= 0) {
-          total += gameMap[i - 1][j - 1];
+          total += gameMap[i - 1][j - 1][0];
         } 
         if(i + 1 <= gameMap.length - 1) {
-          total += gameMap[i + 1][j];
+          total += gameMap[i + 1][j][0];
         } 
         if(j + 1 <= gameMap[i].length - 1) {
-          total += gameMap[i][j + 1];
+          total += gameMap[i][j + 1][0];
         }
         if(i + 1 <= gameMap.length - 1 && j + 1 <= gameMap[i].length - 1) {
-          total += gameMap[i + 1][j + 1];
+          total += gameMap[i + 1][j + 1][0];
         } 
         if(i + 1 <= gameMap.length - 1 && j - 1 >= 0) {
-          total += gameMap[i + 1][j - 1];
+          total += gameMap[i + 1][j - 1][0];
         } 
         if(i - 1 >= 0 && j + 1 <= gameMap[i].length - 1) {
-          total += gameMap[i - 1][j + 1];
+          total += gameMap[i - 1][j + 1][0];
         } 
         if(total < 2) {
-          changes.push([i, j, 0]);
+          changes.push([i, j, 0, 'rgb(219, 200, 200)']);
         } else if(total > 3) {
-          changes.push([i, j, 0]);
+          changes.push([i, j, 0, 'rgb(219, 200, 200)']);
         }
       } else {
         let total = 0;
+        let colors = [];
         if(i - 1 >= 0) {
-          total += gameMap[i - 1][j];
+          total += gameMap[i - 1][j][0];
+          colors.push(gameMap[i - 1][j][1]);
         } 
         if(j - 1 >= 0) {
-          total += gameMap[i][j - 1];
+          total += gameMap[i][j - 1][0];
+          colors.push(gameMap[i][j - 1][1]);
         }
         if(i - 1 >= 0 && j - 1 >= 0) {
-          total += gameMap[i - 1][j - 1];
+          total += gameMap[i - 1][j - 1][0];
+          colors.push(gameMap[i - 1][j - 1][1]);
         } 
         if(i + 1 <= gameMap.length - 1) {
-          total += gameMap[i + 1][j];
+          total += gameMap[i + 1][j][0];
+          colors.push(gameMap[i + 1][j][1]);
         } 
         if(j + 1 <= gameMap[i].length - 1) {
-          total += gameMap[i][j + 1];
+          total += gameMap[i][j + 1][0];
+          colors.push(gameMap[i][j + 1][1]);
         }
         if(i + 1 <= gameMap.length - 1 && j + 1 <= gameMap[i].length - 1) {
-          total += gameMap[i + 1][j + 1];
+          total += gameMap[i + 1][j + 1][0];
+          colors.push(gameMap[i + 1][j + 1][1]);
         } 
         if(i + 1 <= gameMap.length - 1 && j - 1 >= 0) {
-          total += gameMap[i + 1][j - 1];
+          total += gameMap[i + 1][j - 1][0];
+          colors.push(gameMap[i + 1][j - 1][1]);
         } 
         if(i - 1 >= 0 && j + 1 <= gameMap[i].length - 1) {
-          total += gameMap[i - 1][j + 1];
+          total += gameMap[i - 1][j + 1][0];
+          colors.push(gameMap[i - 1][j + 1][1]);
         } 
         if(total === 3) {
-          changes.push([i, j, 1]);
+          let colorx = 0;
+          let colory = 0;
+          let colorz = 0;
+          for(let k = 0;k < colors.length;k++) {
+            let color = colors[k].slice(4, colors[k].length - 1);
+            color = color.split(',');
+            colorx += Number(color[0]);
+            colory += Number(color[1]);
+            colorz += Number(color[2]);
+          }
+          colorx = Math.floor(colorx / colors.length);
+          colory = Math.floor(colory / colors.length);
+          colorz = Math.floor(colorz / colors.length);
+          changes.push([i, j, 1, 'rgb(' + colorx + ',' + colory + ',' + colorz + ')']);
         }
       }
     }
   }
   for(let i = 0;i < changes.length;i++) {
-    gameMap[changes[i][0]][changes[i][1]] = changes[i][2];
+    gameMap[changes[i][0]][changes[i][1]][0] = changes[i][2];
+    gameMap[changes[i][0]][changes[i][1]][1] = changes[i][3];
   }
   io.emit('gameMap', gameMap);
-}, 1000);
+}, 1500);
 
 http.listen(port, function() {
   console.log('Server is now connected on port ' + port);
