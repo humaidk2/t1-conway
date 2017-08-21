@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack && forever start server.js"
+    "start": "webpack && node start server.js"
   },
   "repository": {
     "type": "git",
@@ -44,7 +44,6 @@
     "font-awesome": "^4.7.0",
     "font-awesome-sass-loader": "^2.0.1",
     "font-awesome-webpack": "0.0.5-beta.2",
-    "forever": "^0.15.3",
     "helmet": "^3.4.0",
     "http": "0.0.0",
     "https": "^1.0.0",
