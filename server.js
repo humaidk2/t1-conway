@@ -173,7 +173,7 @@ setInterval(function() {
     gameMap[changes[i][0]][changes[i][1]][1] = changes[i][3];
   }
   io.emit('gameMap', gameMap);
-}, 1500);
+}, 1800);
 
 http.listen(port, function() {
   console.log('Server is now connected on port ' + port);
