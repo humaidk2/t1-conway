@@ -44,9 +44,13 @@ export default class Sidebar extends React.Component {
   }
   changeShape(shapeIndex) {
     let map = this.props.game;
-    for(let i = 0;i < this.state.shapes[shapeIndex][1].length;i++) {
-      for(let j = 0;j < this.state.shapes[shapeIndex][1][i].length;j++) {
-        map[i + 5][j + 5] = this.state.shapes[shapeIndex][1][i][j];
+    let startRow = Math.floor((Math.random() * (this.props.game.length - this.state.shapes[shapeIndex][1].length)));
+    let startCol = Math.floor((Math.random() * (this.props.game.length - this.state.shapes[shapeIndex][1].length)));
+    let currCol = startCol;
+    for(let i = 0;i < this.state.shapes[shapeIndex][1].length;i++, startRow++) {
+      startCol = currCol;
+      for(let j = 0;j < this.state.shapes[shapeIndex][1][i].length;j++, startCol++) {
+        map[startRow][startCol] = this.state.shapes[shapeIndex][1][i][j];
       }
     }
     socket.emit('get', map);
@@ -69,7 +73,7 @@ export default class Sidebar extends React.Component {
     let shapes = this.state.shapes;
     let newMap = [this.state.name, []];
     let blankMap = [];
-    for(let i = 0;i < this.state.newMap.length;i++) {
+    for(let i = 0;i < this.state.newMap.length ;i++) {
       newMap[1].push([]);
       blankMap.push([]);
       for(let j = 0;j < this.state.newMap[i].length;j++) {
@@ -87,7 +91,7 @@ export default class Sidebar extends React.Component {
   render () {
     return (
             <div className="sidebar">
-              <div className="my-color-container"><div className="my-color-title"><div>Your color is:</div></div><div className="my-color" style={{'backgroundColor': this.props.hue}}/></div>
+              <div className="my-color-container"><div className="my-color-title"><div>Your color:</div></div><div className="my-color" style={{'backgroundColor': this.props.hue}}/></div>
               {
                 this.state.shapes.map((shape, shapeIndex)=>(
                   <div key={'my-color-container' + shapeIndex} className="my-color-container" onClick={this.changeShape.bind(this, shapeIndex)}><div className="my-color-title"><div>{shape[0] + ':'}</div></div>
@@ -110,7 +114,7 @@ export default class Sidebar extends React.Component {
                 ))
               }
               <div className="my-color-container">
-                <div className="shape-add" onClick={this.addNewMap}><i className="fa fa-lg fa-plus-circle fa-inverse icon"></i></div>
+                <div className="shape-add" onClick={this.addNewMap}><div  className="shape-link fa-stack fa-md" href="https://500px.com/humaidk2"><i className="fa fa-stack-1x fa-plus fa-inverse"></i></div></div>
                 <div className="shape-add-input"><input className="shape-input" type="text" value={this.state.name} onChange={this.handleTextChange}  /></div>
                 <div className="newMap">
                 {
