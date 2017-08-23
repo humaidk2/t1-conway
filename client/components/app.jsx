@@ -1,6 +1,7 @@
 import React from 'react';
 import Game from './game';
 import Sidebar from './sidebar';
+import Footer from './footer';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,8 +43,11 @@ export default class App extends React.Component {
   render () {
     return (
             <div className="app">
-              <Sidebar game={this.state.game} hue={this.hue} />
-              <Game game={this.state.game} clickHandler={this.clickHandler} hue={this.hue} />
+              <div className="app-main">
+                <Sidebar game={this.state.game} hue={this.hue} />
+                <Game game={this.state.game} clickHandler={this.clickHandler} hue={this.hue} />
+              </div>
+                <Footer />
             </div>);
   }
 }
