@@ -153,16 +153,20 @@ setInterval(function() {
           let colorx = 0;
           let colory = 0;
           let colorz = 0;
+          let colorsLength = 0;
           for(let k = 0;k < colors.length;k++) {
             let color = colors[k].slice(4, colors[k].length - 1);
             color = color.split(',');
-            colorx += Number(color[0]);
-            colory += Number(color[1]);
-            colorz += Number(color[2]);
+            if(Number(color[0] !== color[1] && color[1] !== color[2] && color[2] !== '256')) {
+              colorx += Math.pow(Number(color[0]), 2);
+              colory += Math.pow(Number(color[1]), 2);
+              colorz += Math.pow(Number(color[2]), 2);
+              colorsLength++;
+            }
           }
-          colorx = Math.floor(colorx / colors.length);
-          colory = Math.floor(colory / colors.length);
-          colorz = Math.floor(colorz / colors.length);
+          colorx = Math.floor(Math.sqrt(Math.floor(colorx / colorsLength)));
+          colory = Math.floor(Math.sqrt(Math.floor(colory / colorsLength)));
+          colorz = Math.floor(Math.sqrt(Math.floor(colorz / colorsLength)));
           changes.push([i, j, 1, 'rgb(' + colorx + ',' + colory + ',' + colorz + ')']);
         }
       }
@@ -173,7 +177,7 @@ setInterval(function() {
     gameMap[changes[i][0]][changes[i][1]][1] = changes[i][3];
   }
   io.emit('gameMap', gameMap);
-}, 1800);
+}, 1000);
 
 http.listen(port, function() {
   console.log('Server is now connected on port ' + port);
