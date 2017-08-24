@@ -29,17 +29,34 @@ Solution
   * Created a sidebar component with 3 6x6 default patterns that display emit newmap with selected pattern
   * Added new component to sidebar that allows creation of new patterns
   8 Developed a footer component and added my project/account links with font-awesome links
+  * Deployed to heroku
 
 Live
 -----
 
 **[This project is live!](https://serene-island-83350.herokuapp.com/)
 
+To use application
+  * Clone this repo
+  * Run `npm install`
+  * Run `npm start`
 
-# Tech
+# Technical Choices
 T1-Conway uses the following libraries:
 
   * [React](https://facebook.github.io/react/) - A Javascript library for building user interfaces.
   * [Express](http://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
   * [NodeJS](https://nodejs.org/) - Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
   * [Socket.IO](http://socket.io/) - Enables real-time bidirectional event-based communication.
+
+# Future additions
+
+  * Test with jest
+  * Add load balancer for scalability
+  * End to end Tests with nightmare or nightwatch
+  * Add multiple socket rooms with each room on a different server for scalabiliy and better performance
+
+# Other projects
+
+  * [VrPacman](https://vrpacman.com) ([Git](https://github.com/humaidk2/vrpacman)) FPS VR version of the classic game, Pac-man
+  * [Portfolio](https://humaidkhan.com) Portfolio of Humaid Khan
