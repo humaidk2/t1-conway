@@ -1,10 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
 module.exports = {
-  entry: './client/components/index.jsx',
+  entry: './/components/index.jsx',
   devtool: 'inline-source-map',
   output: {
-    path: path.resolve(__dirname, 'client', 'compiled'),
+    path: path.resolve(__dirname, '', 'compiled'),
     publicPath: '/compiled/',
     filename: 'bundle.js'
   },

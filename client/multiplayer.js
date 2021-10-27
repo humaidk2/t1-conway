@@ -1,4 +1,4 @@
-var socket = io();
+var socket = io(process.env.WEB_SOCKET_URL || 'localhost:8080');
 socket.on('news', function (data) {
   console.log(data);
   // socket.emit('my other event', { my: 'data' });
